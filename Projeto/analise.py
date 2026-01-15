@@ -69,15 +69,19 @@ def plot_histograma_clinica(tempos_clinica):
 def plot_histograma_desistencias(tempos_desistencia):
     if not tempos_desistencia:
         return
+    data = np.array(tempos_desistencia,dtype=float)
     plt.figure("Desistências", figsize=(8,5))
-    plt.hist(tempos_desistencia, bins=15, color="#530559", alpha=0.7, edgecolor='black')
+    try:
+        plt.hist(data, bins=15, color="#ba2ecc", alpha=0.7, edgecolor="black")
+    except ValueError:
+        plt.bar(np.mean(data), len(data), width=1, color="#ba2ecc", alpha=0.7, edgecolor="black", align='center')
+    
     plt.title("Distribuição dos Tempos de Desistência (VERDE)")
     plt.xlabel("Tempo Espera (min)")
     plt.ylabel("Frequência")
     plt.grid(True, alpha=0.5)
     plt.tight_layout()
     plt.show(block=False)
-
 
 
 

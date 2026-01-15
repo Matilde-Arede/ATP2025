@@ -176,11 +176,23 @@ if autenticacao:
             else:
                 continue
         if event == 'Botao_Simulacao':
+            try:
+                taxa= int(values['-TAXA-'])
+                medico=int(values['-MEDICOS-'])
+                duracao= int(values['-DURACAO-'])
+                temp_med= float(values["-TEMPO-"])
+            except ValueError:
+                sg.popup("Erro\n\n Os números inseridos são inválidos")
+                continue
+            if taxa<=0 or medico<=0 or duracao<=0 or temp_med<=0:
+                sg.popup_error("Erro!\n Os valores necessitam de ser positivos e inteiros")
+                continue
+                
             config = {
-                "taxa_chegada": int(values['-TAXA-']),
-                "num_medicos": int(values['-MEDICOS-']),
-                "tempo_max": int(values['-DURACAO-']),
-                "tempo_med":float(values["-TEMPO-"]),
+                "taxa_chegada": taxa,
+                "num_medicos": medico,
+                "tempo_max": duracao,
+                "tempo_med":temp_med,
                 "distribuicao":values['-DIST-']
             }
             
