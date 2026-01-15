@@ -250,3 +250,4 @@ if autenticacao:
 
         
         janela_principal["-Tabela-"].update(values=dados_tabela)
+
